@@ -1,32 +1,23 @@
 package gestao.gastos.model;
 
-import com.fasterxml.jackson.annotation.*;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,
         getterVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Document(collection="gasto")
 public @Data class GastoModel implements Serializable {
 
-    private Integer id;
+    @Id
+    private String _id;
 
     @Size(max = 100)
     private String descricao;
@@ -35,7 +26,8 @@ public @Data class GastoModel implements Serializable {
 
     private Long codigoUsuario;
 
-    private Date data;
+
+    private LocalDateTime data;
 
 
 }
